@@ -1,0 +1,19 @@
+{
+  "name": "nutrify",
+  "version": "1.0.0",
+  "description": "Health tracking App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Shivang Mishra",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "mongoose-dateonly": "^1.0.6"
+  }
+}
