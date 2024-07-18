@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken')
 const User = require('./models/User')
 const Food = require('./models/foodModel')
 const trackingModel = require('./models/trackingModel')
+
 const verifyToken = require('./verifyToken')
+const cors = require('cors')
 
 
 mongoose.connect("mongodb://localhost:27017/nutrify")
@@ -20,6 +22,7 @@ mongoose.connect("mongodb://localhost:27017/nutrify")
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 
 app.get('/foods', verifyToken, async (req,res) => {
@@ -57,6 +60,7 @@ app.get('/track/:userid/:date', verifyToken, async (req,res) => {
 
     try {
         let foods = await trackingModel.find({ userId: userid, eatenDate: strDate}).populate('userId').populate('foodId')
+        console.log(foods)
         res.send(foods)
     }
     catch (err) {
@@ -75,7 +79,9 @@ app.post('/login', async (req,res) => {
                 if(success) {
                     jwt.sign({ email: user.email }, "nutrifyapp", (err,token) => {
                         if( !err ) {
-                            res.send({ message: "Login Success", token: token})
+                            let name = user.name
+                            let id = user.id
+                            res.send({ name,  message: "Login Success", token: token, userid: id})
                         }
                     })
                 } 
