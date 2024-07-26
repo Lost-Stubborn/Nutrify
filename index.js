@@ -9,9 +9,9 @@ const trackingModel = require('./models/trackingModel')
 
 const verifyToken = require('./verifyToken')
 const cors = require('cors')
+// mongodb://localhost:27017/nutrify
 
-
-mongoose.connect("mongodb://localhost:27017/nutrify")
+mongoose.connect("mongodb+srv://shivangUser:MkEhaQuzrNyeXUIj@cluster0.hfxgmwk.mongodb.net/")
     .then(() => {
         console.log('Database Connection Successful')
     })
